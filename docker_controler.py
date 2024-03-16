@@ -1,4 +1,14 @@
 import asyncio
+import docker
+
+
+def get_containers():
+    client = docker.from_env()
+    containers = client.containers.list()
+    container_info = [{'id': container.id, 'name': container.name, 'status': container.status} for container in containers]
+
+    return container_info
+
 
 async def run(cmd):
     proc = await asyncio.create_subprocess_shell(

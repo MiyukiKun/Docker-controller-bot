@@ -2,3 +2,4 @@ telethon
 requests
 cryptg
 python-dotenv
+docker

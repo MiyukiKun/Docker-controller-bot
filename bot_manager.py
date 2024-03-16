@@ -20,12 +20,13 @@ async def _(event):
     env = r.raw_text.strip()
     env = env.replace('"', '\\"')
     try:
-        _, git_link, var = event.raw_text.split()
+        _, git_link, name = event.raw_text.split()
+        name = name.replace("@", "").lower()
     except:
         await event.reply("Usage:\n`/create <repo link> <bot username>`\n\n Reply to ENV vars")
         return
     
-    o = await docker_controler.create(git_link, var, env)
+    o = await docker_controler.create(git_link, name, env)
     await event.reply(f"```Logs\n{o}```")
 
 
@@ -33,6 +34,7 @@ async def _(event):
 async def _(event):
     try:
         _, name = event.raw_text.split()
+        name = name.replace("@", "").lower()
     except:
         await event.reply("Usage:\n`/restart <bot username>`")
     o = await docker_controler.restart(name)
@@ -43,6 +45,7 @@ async def _(event):
 async def _(event):
     try:
         _, name = event.raw_text.split()
+        name = name.replace("@", "").lower()
     except:
         await event.reply("Usage:\n`/remove <bot username>`")
     o = await docker_controler.remove(name)
@@ -53,6 +56,7 @@ async def _(event):
 async def _(event):
     try:
         _, name = event.raw_text.split()
+        name = name.replace("@", "").lower()
     except:
         await event.reply("Usage:\n`/start <bot username>`")
     o = await docker_controler.start(name)
@@ -63,6 +67,7 @@ async def _(event):
 async def _(event):
     try:
         _, name = event.raw_text.split()
+        name = name.replace("@", "").lower()
     except:
         await event.reply("Usage:\n`/stop <bot username>`")
     o = await docker_controler.stop(name)
@@ -73,10 +78,22 @@ async def _(event):
 async def _(event):
     try:
         _, name = event.raw_text.split()
+        name = name.replace("@", "").lower()
     except:
         await event.reply("Usage:\n`/update <bot username>`")
     o = await docker_controler.update(name)
     await event.reply(f"```Logs\n{o}```")
+
+
+@bot.on(events.NewMessage(pattern="/status"))
+async def _(event):
+    containers = docker_controler.get_containers()
+    res = ""
+    for c in containers:
+        res += f"@{c.get('name')} {c.get('status')}\n"
+
+    await event.reply(res)
+
 
 
 bot.start()
