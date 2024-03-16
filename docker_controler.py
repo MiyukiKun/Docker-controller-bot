@@ -25,17 +25,17 @@ async def stop(name):
     return o[-2000:]
 
 async def restart(name):
-    o = await run(f'bash restart.sh "{name}"')
+    o = await run(f'bash scripts/restart.sh "{name}"')
     return o[-2000:]
 
 async def update(name):
-    o = await run(f'bash update.sh "{name}"')
+    o = await run(f'bash scripts/update.sh "{name}"')
     return o[-2000:]
 
 async def remove(name):
-    o = await run(f'bash remove.sh "{name}"')
+    o = await run(f'bash scripts/remove.sh "{name}"')
     return o[-2000:]
 
 async def create(git_link, name, env):
-    o = await run(f'bash create.sh "{git_link}" "{name}" "{env}"')
+    o = await run(f'bash scripts/create.sh "{git_link}" "{name}" "{env}"')
     return o[-2000:]
