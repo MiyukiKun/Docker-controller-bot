@@ -26,7 +26,7 @@ async def _(event):
         return
     
     o = await docker_controler.create(git_link, var, env)
-    await event.reply(f"```test\n{o}```")
+    await event.reply(f"```Logs\n{o}```")
 
 
 @bot.on(events.NewMessage(pattern="/restart"))
@@ -36,7 +36,7 @@ async def _(event):
     except:
         await event.reply("Usage:\n`/restart <bot username>`")
     o = await docker_controler.restart(name)
-    await event.reply(f"```test\n{o}```")
+    await event.reply(f"```Logs\n{o}```")
 
 
 @bot.on(events.NewMessage(pattern="/remove"))
@@ -46,7 +46,7 @@ async def _(event):
     except:
         await event.reply("Usage:\n`/remove <bot username>`")
     o = await docker_controler.remove(name)
-    await event.reply(f"```test\n{o}```")
+    await event.reply(f"```Logs\n{o}```")
 
 
 @bot.on(events.NewMessage(pattern="/sstart"))
@@ -56,7 +56,7 @@ async def _(event):
     except:
         await event.reply("Usage:\n`/start <bot username>`")
     o = await docker_controler.start(name)
-    await event.reply(f"```test\n{o}```")
+    await event.reply(f"```Logs\n{o}```")
 
 
 @bot.on(events.NewMessage(pattern="/stop"))
@@ -66,7 +66,7 @@ async def _(event):
     except:
         await event.reply("Usage:\n`/stop <bot username>`")
     o = await docker_controler.stop(name)
-    await event.reply(f"```test\n{o}```")
+    await event.reply(f"```Logs\n{o}```")
 
 
 @bot.on(events.NewMessage(pattern="/update"))
@@ -76,7 +76,7 @@ async def _(event):
     except:
         await event.reply("Usage:\n`/update <bot username>`")
     o = await docker_controler.update(name)
-    await event.reply(f"```test\n{o}```")
+    await event.reply(f"```Logs\n{o}```")
 
 
 bot.start()
