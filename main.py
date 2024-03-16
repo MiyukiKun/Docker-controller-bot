@@ -48,7 +48,7 @@ async def _(event):
     await event.reply(f"```test\n{o}```")
 
 
-@bot.on(events.NewMessage(pattern="/start"))
+@bot.on(events.NewMessage(pattern="/sstart"))
 async def _(event):
     try:
         _, name = event.raw_text.split()
