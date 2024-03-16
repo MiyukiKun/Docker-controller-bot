@@ -18,6 +18,7 @@ async def _(event):
         return
     
     env = r.raw_text.strip()
+    env = env.replace('"', '\\"')
     try:
         _, git_link, var = event.raw_text.split()
     except:
